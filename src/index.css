@@ -1080,6 +1080,182 @@ body::after {
   animation: successPulse 2s ease-in-out infinite;
 }
 
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+  border-radius: var(--border-radius-xl);
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(40px);
+  box-shadow: var(--shadow-neon);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header h2 {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, var(--neon-green), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: var(--transition-elastic);
+  backdrop-filter: blur(20px);
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  border-color: rgba(0, 255, 136, 0.5);
+}
+
+.modal-body {
+  color: var(--white);
+}
+
+/* Auth Modal Styles */
+.auth-modal-content {
+  width: 100%;
+}
+
+.auth-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(20px);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: var(--transition-elastic);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-tab.active {
+  background: var(--transport-gradient);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+}
+
+.auth-forms {
+  position: relative;
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.auth-form h3 {
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, var(--neon-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-form p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.auth-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form .form-group input {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  font-size: 1rem;
+  transition: var(--transition-elastic);
+  backdrop-filter: blur(20px);
+}
+
+.auth-form .form-group input:focus {
+  border-color: var(--neon-green);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+  transform: translateY(-2px);
+}
+
+.auth-form .form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.auth-footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 /* Premium Cyber Animations */
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -1304,6 +1480,20 @@ body::after {
   
   .login-content {
     padding: 3.5rem 2.5rem;
+  }
+  
+  .modal-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .auth-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 
