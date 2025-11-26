@@ -246,7 +246,7 @@ function App() {
               </p>
 
               <div className="transport-features-grid">
-                {/* Vehicle Registration Feature - Increased Height */}
+                {/* Vehicle Registration Feature - Optimized Size */}
                 <div 
                   className="transport-feature-item floating" 
                   onClick={handleVehicleClick}
@@ -256,10 +256,9 @@ function App() {
                     backdropFilter: 'blur(20px)',
                     animationDelay: '0s',
                     cursor: 'pointer',
-                    minHeight: '280px',
+                    minHeight: '320px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between'
+                    flexDirection: 'column'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', flex: 1 }}>
@@ -270,21 +269,22 @@ function App() {
                     }}>🚙</div>
                     <div className="transport-feature-content" style={{ flex: 1 }}>
                       <h4>Vehicle Registration</h4>
-                      <p>Register and manage vehicle documentation, compliance, and ownership transfers nationwide. Complete vehicle lifecycle management with real-time status tracking and digital certification.</p>
+                      <p>Complete vehicle lifecycle management including registration, documentation, compliance tracking, ownership transfers, and real-time status monitoring with digital certification services.</p>
                     </div>
                   </div>
                   <div style={{ 
-                    marginTop: '1rem', 
+                    marginTop: '1.5rem', 
                     paddingTop: '1rem', 
                     borderTop: '1px solid rgba(255, 255, 255, 0.1)',
                     fontSize: '0.9rem',
-                    color: 'rgba(255, 255, 255, 0.8)'
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center'
                   }}>
-                    Click to register your vehicle or manage existing registrations
+                    <strong>Click to register your vehicle or manage existing registrations</strong>
                   </div>
                 </div>
 
-                {/* Drivers License Feature - Increased Height */}
+                {/* Drivers License Feature - Optimized Size */}
                 <div 
                   className="transport-feature-item floating" 
                   onClick={handleLicenseClick}
@@ -294,10 +294,9 @@ function App() {
                     backdropFilter: 'blur(20px)',
                     animationDelay: '0.2s',
                     cursor: 'pointer',
-                    minHeight: '280px',
+                    minHeight: '320px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between'
+                    flexDirection: 'column'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', flex: 1 }}>
@@ -308,17 +307,18 @@ function App() {
                     }}>👨‍✈️</div>
                     <div className="transport-feature-content" style={{ flex: 1 }}>
                       <h4>Drivers License Services</h4>
-                      <p>Apply for, renew, and manage driver licensing, certification, and endorsements. Complete testing scheduling, license verification, and digital license management services.</p>
+                      <p>Comprehensive driver management including license applications, renewals, certifications, endorsements, testing scheduling, verification services, and digital license management.</p>
                     </div>
                   </div>
                   <div style={{ 
-                    marginTop: '1rem', 
+                    marginTop: '1.5rem', 
                     paddingTop: '1rem', 
                     borderTop: '1px solid rgba(255, 255, 255, 0.1)',
                     fontSize: '0.9rem',
-                    color: 'rgba(255, 255, 255, 0.8)'
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center'
                   }}>
-                    Click to apply for or manage your driver's license
+                    <strong>Click to apply for or manage your driver's license</strong>
                   </div>
                 </div>
 
@@ -328,7 +328,7 @@ function App() {
                   border: '1px solid rgba(34, 197, 94, 0.3)',
                   backdropFilter: 'blur(20px)',
                   animationDelay: '0.4s',
-                  minHeight: '220px'
+                  minHeight: '260px'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #22c55e, #16a34a)',
@@ -336,24 +336,25 @@ function App() {
                   }}>🚚</div>
                   <div className="transport-feature-content">
                     <h4>Fleet Management</h4>
-                    <p>Real-time vehicle tracking and fleet optimization for national transport operations and logistics coordination with advanced analytics.</p>
+                    <p>Advanced fleet tracking and optimization with real-time monitoring, maintenance scheduling, fuel management, and comprehensive analytics for national transport operations.</p>
                   </div>
                 </div>
 
+                {/* Route Planning Feature */}
                 <div className="transport-feature-item floating" style={{
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1))',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   backdropFilter: 'blur(20px)',
                   animationDelay: '0.6s',
-                  minHeight: '220px'
+                  minHeight: '260px'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
                     boxShadow: '0 8px 25px rgba(59, 130, 246, 0.4)'
                   }}>🛣️</div>
                   <div className="transport-feature-content">
-                    <h4>Route Planning</h4>
-                    <p>Intelligent route optimization and traffic management systems for efficient transportation networks and urban mobility planning.</p>
+                    <h4>Route Planning & Optimization</h4>
+                    <p>Intelligent route planning with traffic analysis, congestion management, and optimization algorithms for efficient transportation networks and urban mobility.</p>
                   </div>
                 </div>
               </div>
