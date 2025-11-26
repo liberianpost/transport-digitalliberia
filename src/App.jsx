@@ -1,3 +1,5 @@
+// src/App.jsx - UPDATED TRANSPORT COMPONENT
+
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 
@@ -245,80 +247,49 @@ function App() {
                 providing real-time logistics and coordinated mobility solutions.
               </p>
 
+              {/* UPDATED: Transport Features Grid - Matching Attendance System Size */}
               <div className="transport-features-grid">
-                {/* Vehicle Registration Feature - Optimized Size */}
+                {/* Vehicle Registration Feature */}
                 <div 
                   className="transport-feature-item floating" 
                   onClick={handleVehicleClick}
                   style={{
                     background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.1))',
                     border: '1px solid rgba(139, 92, 246, 0.3)',
-                    backdropFilter: 'blur(20px)',
+                    backdropFilter: 'blur(10px)',
                     animationDelay: '0s',
-                    cursor: 'pointer',
-                    minHeight: '320px',
-                    display: 'flex',
-                    flexDirection: 'column'
+                    cursor: 'pointer'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', flex: 1 }}>
-                    <div className="transport-feature-icon" style={{
-                      background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-                      boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)',
-                      flexShrink: 0
-                    }}>🚙</div>
-                    <div className="transport-feature-content" style={{ flex: 1 }}>
-                      <h4>Vehicle Registration</h4>
-                      <p>Complete vehicle lifecycle management including registration, documentation, compliance tracking, ownership transfers, and real-time status monitoring with digital certification services.</p>
-                    </div>
-                  </div>
-                  <div style={{ 
-                    marginTop: '1.5rem', 
-                    paddingTop: '1rem', 
-                    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-                    fontSize: '0.9rem',
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    textAlign: 'center'
-                  }}>
-                    <strong>Click to register your vehicle or manage existing registrations</strong>
+                  <div className="transport-feature-icon" style={{
+                    background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                    boxShadow: '0 8px 20px rgba(139, 92, 246, 0.3)'
+                  }}>🚙</div>
+                  <div className="transport-feature-content">
+                    <h4>Vehicle Registration</h4>
+                    <p>Complete vehicle lifecycle management including registration, documentation, compliance tracking, and digital certification services.</p>
                   </div>
                 </div>
 
-                {/* Drivers License Feature - Optimized Size */}
+                {/* Drivers License Feature */}
                 <div 
                   className="transport-feature-item floating" 
                   onClick={handleLicenseClick}
                   style={{
                     background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.1))',
                     border: '1px solid rgba(245, 158, 11, 0.3)',
-                    backdropFilter: 'blur(20px)',
+                    backdropFilter: 'blur(10px)',
                     animationDelay: '0.2s',
-                    cursor: 'pointer',
-                    minHeight: '320px',
-                    display: 'flex',
-                    flexDirection: 'column'
+                    cursor: 'pointer'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', flex: 1 }}>
-                    <div className="transport-feature-icon" style={{
-                      background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                      boxShadow: '0 8px 25px rgba(245, 158, 11, 0.4)',
-                      flexShrink: 0
-                    }}>👨‍✈️</div>
-                    <div className="transport-feature-content" style={{ flex: 1 }}>
-                      <h4>Drivers License Services</h4>
-                      <p>Comprehensive driver management including license applications, renewals, certifications, endorsements, testing scheduling, verification services, and digital license management.</p>
-                    </div>
-                  </div>
-                  <div style={{ 
-                    marginTop: '1.5rem', 
-                    paddingTop: '1rem', 
-                    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-                    fontSize: '0.9rem',
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    textAlign: 'center'
-                  }}>
-                    <strong>Click to apply for or manage your driver's license</strong>
+                  <div className="transport-feature-icon" style={{
+                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                    boxShadow: '0 8px 20px rgba(245, 158, 11, 0.3)'
+                  }}>👨‍✈️</div>
+                  <div className="transport-feature-content">
+                    <h4>Drivers License Services</h4>
+                    <p>Comprehensive driver management including license applications, renewals, certifications, and digital license management.</p>
                   </div>
                 </div>
 
@@ -326,17 +297,16 @@ function App() {
                 <div className="transport-feature-item floating" style={{
                   background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1))',
                   border: '1px solid rgba(34, 197, 94, 0.3)',
-                  backdropFilter: 'blur(20px)',
-                  animationDelay: '0.4s',
-                  minHeight: '260px'
+                  backdropFilter: 'blur(10px)',
+                  animationDelay: '0.4s'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-                    boxShadow: '0 8px 25px rgba(34, 197, 94, 0.4)'
+                    boxShadow: '0 8px 20px rgba(34, 197, 94, 0.3)'
                   }}>🚚</div>
                   <div className="transport-feature-content">
                     <h4>Fleet Management</h4>
-                    <p>Advanced fleet tracking and optimization with real-time monitoring, maintenance scheduling, fuel management, and comprehensive analytics for national transport operations.</p>
+                    <p>Advanced fleet tracking and optimization with real-time monitoring, maintenance scheduling, and comprehensive analytics.</p>
                   </div>
                 </div>
 
@@ -344,17 +314,16 @@ function App() {
                 <div className="transport-feature-item floating" style={{
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1))',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
-                  backdropFilter: 'blur(20px)',
-                  animationDelay: '0.6s',
-                  minHeight: '260px'
+                  backdropFilter: 'blur(10px)',
+                  animationDelay: '0.6s'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.4)'
+                    boxShadow: '0 8px 20px rgba(59, 130, 246, 0.3)'
                   }}>🛣️</div>
                   <div className="transport-feature-content">
                     <h4>Route Planning & Optimization</h4>
-                    <p>Intelligent route planning with traffic analysis, congestion management, and optimization algorithms for efficient transportation networks and urban mobility.</p>
+                    <p>Intelligent route planning with traffic analysis, congestion management, and optimization algorithms for efficient transportation.</p>
                   </div>
                 </div>
               </div>
@@ -549,16 +518,17 @@ function App() {
                 </span>
               </div>
               
+              {/* UPDATED: Transport Action Grid - Matching Attendance System */}
               <div className="transport-action-grid">
                 <div className="transport-action-card floating" style={{
-                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1))',
-                  border: '1px solid rgba(34, 197, 94, 0.3)',
-                  backdropFilter: 'blur(20px)',
+                  borderTop: '4px solid #22c55e',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
                   animationDelay: '0s'
                 }}>
                   <div className="transport-card-icon" style={{
-                    background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-                    boxShadow: '0 15px 30px rgba(34, 197, 94, 0.4)'
+                    backgroundColor: '#22c55e20',
+                    color: '#22c55e',
+                    background: 'linear-gradient(135deg, #22c55e30, #22c55e10)'
                   }}>🚚</div>
                   <h3 className="transport-card-title">Fleet Management</h3>
                   <p className="transport-card-description">
@@ -570,14 +540,14 @@ function App() {
                 </div>
                 
                 <div className="transport-action-card floating" style={{
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1))',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                  backdropFilter: 'blur(20px)',
+                  borderTop: '4px solid #3b82f6',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
                   animationDelay: '0.2s'
                 }}>
                   <div className="transport-card-icon" style={{
-                    background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                    boxShadow: '0 15px 30px rgba(59, 130, 246, 0.4)'
+                    backgroundColor: '#3b82f620',
+                    color: '#3b82f6',
+                    background: 'linear-gradient(135deg, #3b82f630, #3b82f610)'
                   }}>🛣️</div>
                   <h3 className="transport-card-title">Route Planning</h3>
                   <p className="transport-card-description">
@@ -589,14 +559,14 @@ function App() {
                 </div>
                 
                 <div className="transport-action-card floating" style={{
-                  background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.1))',
-                  border: '1px solid rgba(245, 158, 11, 0.3)',
-                  backdropFilter: 'blur(20px)',
+                  borderTop: '4px solid #f59e0b',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
                   animationDelay: '0.4s'
                 }}>
                   <div className="transport-card-icon" style={{
-                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    boxShadow: '0 15px 30px rgba(245, 158, 11, 0.4)'
+                    backgroundColor: '#f59e0b20',
+                    color: '#f59e0b',
+                    background: 'linear-gradient(135deg, #f59e0b30, #f59e0b10)'
                   }}>📦</div>
                   <h3 className="transport-card-title">Logistics</h3>
                   <p className="transport-card-description">
