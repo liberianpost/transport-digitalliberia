@@ -5,6 +5,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showVehicleModal, setShowVehicleModal] = useState(false);
+  const [showLicenseModal, setShowLicenseModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,85 @@ function App() {
     setUser(null);
     localStorage.removeItem('transportUser');
   };
+
+  const handleVehicleClick = () => {
+    setShowVehicleModal(true);
+  };
+
+  const handleLicenseClick = () => {
+    setShowLicenseModal(true);
+  };
+
+  const Modal = ({ show, onClose, title, children }) => {
+    if (!show) return null;
+
+    return (
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-header">
+            <h2>{title}</h2>
+            <button className="modal-close" onClick={onClose}>×</button>
+          </div>
+          <div className="modal-body">
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const AuthModalContent = () => (
+    <div className="auth-modal-content">
+      <div className="auth-tabs">
+        <div className="auth-tab active">Sign Up</div>
+        <div className="auth-tab">Login</div>
+      </div>
+      
+      <div className="auth-forms">
+        <div className="auth-form active">
+          <h3>Create Account</h3>
+          <p>Sign up for vehicle registration services</p>
+          
+          <div className="form-group">
+            <input type="text" placeholder="Full Name" />
+          </div>
+          <div className="form-group">
+            <input type="email" placeholder="Email Address" />
+          </div>
+          <div className="form-group">
+            <input type="password" placeholder="Create Password" />
+          </div>
+          <div className="form-group">
+            <input type="password" placeholder="Confirm Password" />
+          </div>
+          
+          <button className="btn btn-transport" style={{width: '100%'}}>
+            Create Account
+          </button>
+        </div>
+        
+        <div className="auth-form">
+          <h3>Welcome Back</h3>
+          <p>Login to your account</p>
+          
+          <div className="form-group">
+            <input type="email" placeholder="Email Address" />
+          </div>
+          <div className="form-group">
+            <input type="password" placeholder="Password" />
+          </div>
+          
+          <button className="btn btn-transport" style={{width: '100%'}}>
+            Login to Account
+          </button>
+        </div>
+      </div>
+      
+      <div className="auth-footer">
+        <p>We'll work on the backend integration later</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="app">
@@ -124,11 +205,56 @@ function App() {
               </p>
 
               <div className="transport-features-grid">
+                {/* Vehicle Registration Feature */}
+                <div 
+                  className="transport-feature-item floating" 
+                  onClick={handleVehicleClick}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.1))',
+                    border: '1px solid rgba(139, 92, 246, 0.3)',
+                    backdropFilter: 'blur(20px)',
+                    animationDelay: '0s',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div className="transport-feature-icon" style={{
+                    background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                    boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)'
+                  }}>🚙</div>
+                  <div className="transport-feature-content">
+                    <h4>Vehicle Registration</h4>
+                    <p>Register and manage vehicle documentation and compliance nationwide</p>
+                  </div>
+                </div>
+
+                {/* Drivers License Feature */}
+                <div 
+                  className="transport-feature-item floating" 
+                  onClick={handleLicenseClick}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.1))',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    backdropFilter: 'blur(20px)',
+                    animationDelay: '0.2s',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div className="transport-feature-icon" style={{
+                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                    boxShadow: '0 8px 25px rgba(245, 158, 11, 0.4)'
+                  }}>👨‍✈️</div>
+                  <div className="transport-feature-content">
+                    <h4>Drivers License</h4>
+                    <p>Apply for and manage driver licensing and certification services</p>
+                  </div>
+                </div>
+
+                {/* Fleet Management Feature */}
                 <div className="transport-feature-item floating" style={{
                   background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1))',
                   border: '1px solid rgba(34, 197, 94, 0.3)',
                   backdropFilter: 'blur(20px)',
-                  animationDelay: '0s'
+                  animationDelay: '0.4s'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #22c55e, #16a34a)',
@@ -144,7 +270,7 @@ function App() {
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1))',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   backdropFilter: 'blur(20px)',
-                  animationDelay: '0.2s'
+                  animationDelay: '0.6s'
                 }}>
                   <div className="transport-feature-icon" style={{
                     background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
@@ -153,38 +279,6 @@ function App() {
                   <div className="transport-feature-content">
                     <h4>Route Planning</h4>
                     <p>Intelligent route optimization and traffic management systems</p>
-                  </div>
-                </div>
-
-                <div className="transport-feature-item floating" style={{
-                  background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.1))',
-                  border: '1px solid rgba(245, 158, 11, 0.3)',
-                  backdropFilter: 'blur(20px)',
-                  animationDelay: '0.4s'
-                }}>
-                  <div className="transport-feature-icon" style={{
-                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    boxShadow: '0 8px 25px rgba(245, 158, 11, 0.4)'
-                  }}>⚡</div>
-                  <div className="transport-feature-content">
-                    <h4>Logistics Coordination</h4>
-                    <p>Efficient cargo and passenger transport coordination nationwide</p>
-                  </div>
-                </div>
-
-                <div className="transport-feature-item floating" style={{
-                  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.1))',
-                  border: '1px solid rgba(139, 92, 246, 0.3)',
-                  backdropFilter: 'blur(20px)',
-                  animationDelay: '0.6s'
-                }}>
-                  <div className="transport-feature-icon" style={{
-                    background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-                    boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)'
-                  }}>📊</div>
-                  <div className="transport-feature-content">
-                    <h4>Infrastructure Analytics</h4>
-                    <p>Comprehensive transport infrastructure monitoring and analytics</p>
                   </div>
                 </div>
               </div>
@@ -448,6 +542,24 @@ function App() {
           onBack={() => setShowLogin(false)}
         />
       )}
+
+      {/* Vehicle Registration Modal */}
+      <Modal 
+        show={showVehicleModal} 
+        onClose={() => setShowVehicleModal(false)}
+        title="Vehicle Registration"
+      >
+        <AuthModalContent />
+      </Modal>
+
+      {/* Drivers License Modal */}
+      <Modal 
+        show={showLicenseModal} 
+        onClose={() => setShowLicenseModal(false)}
+        title="Drivers License Services"
+      >
+        <AuthModalContent />
+      </Modal>
     </div>
   );
 }
