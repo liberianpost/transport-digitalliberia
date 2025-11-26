@@ -257,7 +257,7 @@ body::after {
   background-clip: text;
 }
 
-/* Cyber Transport Features Grid */
+/* Cyber Transport Features Grid - UPDATED CARD SIZES */
 .transport-features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -269,7 +269,7 @@ body::after {
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
-  padding: 2.5rem;
+  padding: 3rem 2.5rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: var(--border-radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -281,6 +281,7 @@ body::after {
   box-shadow: 
     var(--shadow),
     0 0 0 1px rgba(0, 255, 136, 0.1);
+  min-height: 280px; /* Increased height for better text display */
 }
 
 .transport-feature-item::before {
