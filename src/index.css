@@ -1,3 +1,5 @@
+/* src/index.css - UPDATED TRANSPORT SECTION */
+
 * {
   margin: 0;
   padding: 0;
@@ -227,7 +229,7 @@ body::after {
 
 /* Premium Cyber Transport Hero Text */
 .hero-text h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 900;
   background: linear-gradient(135deg, #ffffff 0%, var(--neon-green) 25%, var(--neon-blue) 50%, var(--neon-cyan) 100%);
   -webkit-background-clip: text;
@@ -245,7 +247,7 @@ body::after {
 }
 
 .hero-text p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 3rem;
   font-weight: 400;
@@ -257,164 +259,89 @@ body::after {
   background-clip: text;
 }
 
-/* Cyber Transport Features Grid - UPDATED CARD SIZES */
+/* UPDATED: Transport Features Grid - Matching Attendance System Size */
 .transport-features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   margin-bottom: 4rem;
 }
 
 .transport-feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 3rem 2.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px) saturate(180%);
-  transition: var(--transition-elastic);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  box-shadow: 
-    var(--shadow),
-    0 0 0 1px rgba(0, 255, 136, 0.1);
-  min-height: 280px; /* Increased height for better text display */
-}
-
-.transport-feature-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transition: left 0.8s;
-}
-
-.transport-feature-item::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--transport-gradient);
-  border-radius: var(--border-radius-lg);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.transport-feature-item:hover::before {
-  left: 100%;
-}
-
-.transport-feature-item:hover::after {
-  opacity: 0.4;
+  gap: 1.2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  min-height: auto;
 }
 
 .transport-feature-item:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-15px) scale(1.05) rotateX(5deg);
-  box-shadow: 
-    var(--shadow-transport),
-    0 0 0 2px rgba(0, 255, 136, 0.3);
-  border-color: rgba(0, 255, 136, 0.6);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .transport-feature-icon {
-  font-size: 2.5rem;
-  background: var(--transport-gradient);
-  padding: 1.5rem;
-  border-radius: 25px;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+  padding: 1rem;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 90px;
-  height: 90px;
-  box-shadow: 
-    0 20px 40px rgba(0, 255, 136, 0.6),
-    0 0 0 2px rgba(255,255,255,0.1),
-    0 0 20px rgba(0, 255, 136, 0.4);
-  flex-shrink: 0;
-  transition: var(--transition-elastic);
-  position: relative;
-  overflow: hidden;
-}
-
-.transport-feature-icon::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: rotate(45deg);
-  transition: all 0.6s;
-}
-
-.transport-feature-item:hover .transport-feature-icon::before {
-  left: 100%;
+  min-width: 70px;
+  height: 70px;
+  box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+  transition: all 0.3s ease;
 }
 
 .transport-feature-item:hover .transport-feature-icon {
-  transform: scale(1.15) rotate(10deg) translateZ(20px);
-  box-shadow: 
-    0 25px 50px rgba(0, 255, 136, 0.8),
-    0 0 0 3px rgba(255,255,255,0.2),
-    0 0 30px rgba(0, 255, 136, 0.6);
-  animation: iconPulse 2s ease-in-out infinite;
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 255, 136, 0.5);
 }
 
 .transport-feature-content h4 {
   color: var(--white);
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(135deg, #ffffff, var(--neon-green), var(--neon-cyan));
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff, var(--neon-green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .transport-feature-content p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
-  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
   margin: 0;
-  font-weight: 400;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Premium Cyber Transport Action Grid */
+/* UPDATED: Premium Transport Action Grid - Matching Attendance System */
 .transport-action-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 3.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
   margin-top: 4rem;
 }
 
 .transport-action-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
-  padding: 4.5rem 3.5rem;
-  border-radius: var(--border-radius-xl);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3rem 2.5rem;
+  border-radius: 30px;
   text-align: center;
-  backdrop-filter: blur(30px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    var(--shadow-xl),
-    0 0 0 1px rgba(0, 255, 136, 0.1);
-  transition: var(--transition-elastic);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
 }
 
 .transport-action-card::before {
@@ -425,149 +352,69 @@ body::after {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.8s;
-}
-
-.transport-action-card::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--cyber-gradient);
-  border-radius: var(--border-radius-xl);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.5s;
+  transition: left 0.6s;
 }
 
 .transport-action-card:hover::before {
   left: 100%;
 }
 
-.transport-action-card:hover::after {
-  opacity: 0.4;
-}
-
 .transport-action-card:hover {
-  transform: translateY(-25px) scale(1.06) rotateY(5deg);
-  box-shadow: 
-    var(--shadow-neon),
-    0 0 0 2px rgba(0, 255, 136, 0.3);
-  border-color: rgba(0, 255, 136, 0.6);
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 60px 120px rgba(0, 0, 0, 0.3);
 }
 
 .transport-card-icon {
-  font-size: 5.5rem;
-  margin-bottom: 3.5rem;
-  padding: 3.5rem;
-  border-radius: 40px;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: 25px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cyber-gradient);
-  box-shadow: 
-    0 30px 60px rgba(0, 255, 136, 0.7),
-    0 0 0 3px rgba(255,255,255,0.15),
-    0 0 40px rgba(0, 255, 136, 0.5);
-  transition: var(--transition-elastic);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-}
-
-.transport-card-icon::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform: rotate(45deg);
-  transition: all 0.8s;
-}
-
-.transport-card-icon::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: var(--cyber-gradient);
-  border-radius: 45px;
-  z-index: -1;
-  opacity: 0.7;
-  filter: blur(25px);
-  animation: iconGlow 3s ease-in-out infinite;
-}
-
-.transport-action-card:hover .transport-card-icon::before {
-  left: 100%;
+  background: var(--transport-gradient);
+  box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+  transition: all 0.3s ease;
 }
 
 .transport-action-card:hover .transport-card-icon {
-  transform: scale(1.2) rotate(12deg) translateZ(30px);
-  box-shadow: 
-    0 40px 80px rgba(0, 255, 136, 0.9),
-    0 0 0 4px rgba(255,255,255,0.2),
-    0 0 60px rgba(0, 255, 136, 0.7);
-  animation: iconFloat 3s ease-in-out infinite;
+  transform: scale(1.1);
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.6);
 }
 
 .transport-card-title {
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: var(--white);
-  margin-bottom: 1.8rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1.2rem;
   letter-spacing: -0.02em;
-  text-shadow: 0 2px 25px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(135deg, #ffffff, var(--neon-green), var(--neon-cyan), var(--neon-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: 'Orbitron', sans-serif;
 }
 
 .transport-card-description {
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 3.5rem;
-  font-size: 1.4rem;
-  line-height: 1.8;
+  color: var(--text-light);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
   font-weight: 400;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(0,255,234,0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* Ultra Premium Cyber Transport Buttons */
+/* UPDATED: Premium Transport Buttons - Matching Attendance System */
 .btn {
-  padding: 1.6rem 3.5rem;
+  padding: 1.2rem 2.5rem;
   border: none;
-  border-radius: var(--border-radius);
-  font-size: 1.4rem;
-  font-weight: 800;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: var(--transition-elastic);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 0.8rem;
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  backdrop-filter: blur(20px);
-  font-family: 'Orbitron', sans-serif;
-  transform-style: preserve-3d;
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255,255,255,0.1);
+  letter-spacing: 0.5px;
 }
 
 .btn::before {
@@ -577,135 +424,69 @@ body::after {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.8s;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: inherit;
-  border-radius: var(--border-radius);
-  z-index: -1;
-  opacity: 0.6;
-  filter: blur(20px);
-  transition: all 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
 }
 
 .btn:hover::before {
   left: 100%;
 }
 
-.btn:hover::after {
-  opacity: 0.8;
-  filter: blur(25px);
-}
-
 .btn-transport {
   background: var(--transport-gradient);
   color: var(--white);
-  border: 2px solid rgba(0, 255, 136, 0.7);
-  box-shadow: 
-    0 20px 50px rgba(0, 255, 136, 0.7),
-    0 0 0 2px rgba(255,255,255,0.15),
-    0 0 30px rgba(0, 255, 136, 0.4);
-  position: relative;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
 }
 
 .btn-transport:hover {
-  transform: translateY(-12px) scale(1.1) translateZ(20px);
-  box-shadow: 
-    0 35px 70px rgba(0, 255, 136, 0.9),
-    0 0 0 3px rgba(255,255,255,0.2),
-    0 0 50px rgba(0, 255, 136, 0.6);
-  border-color: rgba(0, 255, 136, 0.9);
-  animation: buttonPulse 2s ease-in-out infinite;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 255, 136, 0.6);
 }
 
 .btn-logistics {
   background: var(--logistics-gradient);
   color: var(--white);
-  border: 2px solid rgba(0, 153, 255, 0.7);
-  box-shadow: 
-    0 20px 50px rgba(0, 153, 255, 0.7),
-    0 0 0 2px rgba(255,255,255,0.15),
-    0 0 30px rgba(0, 153, 255, 0.4);
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 153, 255, 0.4);
 }
 
 .btn-logistics:hover {
-  transform: translateY(-12px) scale(1.1) translateZ(20px);
-  box-shadow: 
-    0 35px 70px rgba(0, 153, 255, 0.9),
-    0 0 0 3px rgba(255,255,255,0.2),
-    0 0 50px rgba(0, 153, 255, 0.6);
-  border-color: rgba(0, 153, 255, 0.9);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 153, 255, 0.6);
 }
 
 .btn-infrastructure {
   background: var(--infrastructure-gradient);
   color: var(--white);
-  border: 2px solid rgba(255, 107, 53, 0.7);
-  box-shadow: 
-    0 20px 50px rgba(255, 107, 53, 0.7),
-    0 0 0 2px rgba(255,255,255,0.15),
-    0 0 30px rgba(255, 107, 53, 0.4);
+  border: none;
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
 }
 
 .btn-infrastructure:hover {
-  transform: translateY(-12px) scale(1.1) translateZ(20px);
-  box-shadow: 
-    0 35px 70px rgba(255, 107, 53, 0.9),
-    0 0 0 3px rgba(255,255,255,0.2),
-    0 0 50px rgba(255, 107, 53, 0.6);
-  border-color: rgba(255, 107, 53, 0.9);
-}
-
-.btn-mobility {
-  background: var(--mobility-gradient);
-  color: var(--white);
-  border: 2px solid rgba(176, 38, 255, 0.7);
-  box-shadow: 
-    0 20px 50px rgba(176, 38, 255, 0.7),
-    0 0 0 2px rgba(255,255,255,0.15),
-    0 0 30px rgba(176, 38, 255, 0.4);
-}
-
-.btn-mobility:hover {
-  transform: translateY(-12px) scale(1.1) translateZ(20px);
-  box-shadow: 
-    0 35px 70px rgba(176, 38, 255, 0.9),
-    0 0 0 3px rgba(255,255,255,0.2),
-    0 0 50px rgba(176, 38, 255, 0.6);
-  border-color: rgba(176, 38, 255, 0.9);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
 }
 
 .btn-glass {
   background: rgba(255, 255, 255, 0.15);
   color: var(--white);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(40px);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .btn-glass:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-12px) scale(1.1) translateZ(20px);
-  box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 2px rgba(255,255,255,0.2);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Action Buttons */
 .hero-actions {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   margin-top: 3.5rem;
 }
@@ -978,109 +759,6 @@ body::after {
   box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
 }
 
-/* Enhanced Cyber Verification States */
-.verification-pending {
-  text-align: center;
-  padding: 5rem 2.5rem;
-}
-
-.notification-sent {
-  color: var(--neon-green);
-  font-weight: 900;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  text-shadow: 
-    0 0 10px var(--neon-green),
-    0 0 20px var(--neon-green);
-  background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: 'Orbitron', sans-serif;
-  animation: textPulse 2s ease-in-out infinite;
-}
-
-.challenge-id {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.95);
-  font-family: 'JetBrains Mono', monospace;
-  margin-bottom: 2rem;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 1.5rem 2rem;
-  border-radius: var(--border-radius);
-  display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(0, 255, 136, 0.1);
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.timeout-notice {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,107,53,0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Enhanced Cyber Message Styles */
-.error-message {
-  background: linear-gradient(135deg, rgba(255, 68, 68, 0.25), rgba(255, 68, 68, 0.15));
-  color: #ff4444;
-  padding: 2rem 2.5rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 2.5rem;
-  border: 1px solid rgba(255, 68, 68, 0.4);
-  font-weight: 800;
-  backdrop-filter: blur(30px);
-  box-shadow: 
-    0 15px 40px rgba(255, 68, 68, 0.3),
-    0 0 0 1px rgba(255, 68, 68, 0.2);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  font-family: 'Orbitron', sans-serif;
-  animation: errorPulse 2s ease-in-out infinite;
-}
-
-.warning-message {
-  background: linear-gradient(135deg, rgba(255, 158, 11, 0.25), rgba(255, 158, 11, 0.15));
-  color: var(--neon-orange);
-  padding: 2rem 2.5rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 2.5rem;
-  border: 1px solid rgba(255, 158, 11, 0.4);
-  font-weight: 800;
-  backdrop-filter: blur(30px);
-  box-shadow: 
-    0 15px 40px rgba(255, 158, 11, 0.3),
-    0 0 0 1px rgba(255, 158, 11, 0.2);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  font-family: 'Orbitron', sans-serif;
-  animation: warningPulse 2s ease-in-out infinite;
-}
-
-.success-message {
-  background: linear-gradient(135deg, rgba(0, 255, 136, 0.25), rgba(0, 255, 136, 0.15));
-  color: var(--neon-green);
-  padding: 2rem 2.5rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 2.5rem;
-  border: 1px solid rgba(0, 255, 136, 0.4);
-  font-weight: 800;
-  backdrop-filter: blur(30px);
-  box-shadow: 
-    0 15px 40px rgba(0, 255, 136, 0.3),
-    0 0 0 1px rgba(0, 255, 136, 0.2);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  font-family: 'Orbitron', sans-serif;
-  animation: successPulse 2s ease-in-out infinite;
-}
-
 /* Modal Styles */
 .modal-overlay {
   position: fixed;
@@ -1264,13 +942,13 @@ body::after {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg) translateZ(0); }
-  50% { transform: translateY(-40px) rotate(5deg) translateZ(20px); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes logoFloat {
-  0%, 100% { transform: translateY(0px) scale(1) rotate(0deg) translateZ(0); }
-  50% { transform: translateY(-15px) scale(1.08) rotate(3deg) translateZ(10px); }
+  0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+  50% { transform: translateY(-15px) scale(1.08) rotate(3deg); }
 }
 
 @keyframes logoGlow {
@@ -1298,41 +976,6 @@ body::after {
   100% { background-position: 100% 50%; }
 }
 
-@keyframes iconPulse {
-  0%, 100% { transform: scale(1.15) rotate(10deg) translateZ(20px); }
-  50% { transform: scale(1.25) rotate(12deg) translateZ(25px); }
-}
-
-@keyframes iconFloat {
-  0%, 100% { transform: scale(1.2) rotate(12deg) translateZ(30px) translateY(0); }
-  50% { transform: scale(1.3) rotate(14deg) translateZ(35px) translateY(-10px); }
-}
-
-@keyframes iconGlow {
-  0%, 100% { opacity: 0.7; filter: blur(25px); }
-  50% { opacity: 0.9; filter: blur(30px); }
-}
-
-@keyframes buttonPulse {
-  0%, 100% { 
-    box-shadow: 
-      0 35px 70px rgba(0, 255, 136, 0.9),
-      0 0 0 3px rgba(255,255,255,0.2),
-      0 0 50px rgba(0, 255, 136, 0.6);
-  }
-  50% { 
-    box-shadow: 
-      0 45px 90px rgba(0, 255, 136, 1),
-      0 0 0 4px rgba(255,255,255,0.3),
-      0 0 70px rgba(0, 255, 136, 0.8);
-  }
-}
-
-@keyframes loginGlow {
-  0% { opacity: 0.4; filter: blur(30px); }
-  100% { opacity: 0.6; filter: blur(35px); }
-}
-
 @keyframes inputFocus {
   0% { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.3), 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 136, 0.2); }
   50% { box-shadow: 0 0 0 6px rgba(0, 255, 136, 0.4), 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 136, 0.3); }
@@ -1354,24 +997,9 @@ body::after {
   }
 }
 
-@keyframes textPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes errorPulse {
-  0%, 100% { box-shadow: 0 15px 40px rgba(255, 68, 68, 0.3), 0 0 0 1px rgba(255, 68, 68, 0.2); }
-  50% { box-shadow: 0 20px 50px rgba(255, 68, 68, 0.5), 0 0 0 2px rgba(255, 68, 68, 0.3); }
-}
-
-@keyframes warningPulse {
-  0%, 100% { box-shadow: 0 15px 40px rgba(255, 158, 11, 0.3), 0 0 0 1px rgba(255, 158, 11, 0.2); }
-  50% { box-shadow: 0 20px 50px rgba(255, 158, 11, 0.5), 0 0 0 2px rgba(255, 158, 11, 0.3); }
-}
-
-@keyframes successPulse {
-  0%, 100% { box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3), 0 0 0 1px rgba(0, 255, 136, 0.2); }
-  50% { box-shadow: 0 20px 50px rgba(0, 255, 136, 0.5), 0 0 0 2px rgba(0, 255, 136, 0.3); }
+@keyframes loginGlow {
+  0% { opacity: 0.4; filter: blur(30px); }
+  100% { opacity: 0.6; filter: blur(35px); }
 }
 
 @keyframes floatParticle {
@@ -1383,11 +1011,11 @@ body::after {
 
 /* Utility Classes */
 .floating {
-  animation: float 8s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
 .glow {
-  animation: transportGlow 3s ease-in-out infinite;
+  animation: logoGlow 3s ease-in-out infinite;
 }
 
 .hidden {
@@ -1425,7 +1053,7 @@ body::after {
   }
   
   .hero-text h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -1437,17 +1065,17 @@ body::after {
   }
   
   .hero-text h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   
   .transport-features-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
   
   .transport-action-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 }
 
@@ -1459,11 +1087,11 @@ body::after {
   }
   
   .hero-text h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   
   .hero-text p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   
   .hero-actions {
@@ -1471,12 +1099,12 @@ body::after {
   }
   
   .btn {
-    padding: 1.5rem 3rem;
-    font-size: 1.3rem;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
   }
   
   .transport-action-card {
-    padding: 3.5rem 2.5rem;
+    padding: 2.5rem 2rem;
   }
   
   .login-content {
@@ -1504,27 +1132,27 @@ body::after {
   }
   
   .hero-text h1 {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
   }
   
   .transport-feature-item {
-    padding: 2rem;
+    padding: 1.2rem;
     flex-direction: column;
     text-align: center;
   }
   
   .transport-feature-icon {
-    min-width: 80px;
-    height: 80px;
-    font-size: 2.2rem;
+    min-width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
   
   .transport-action-card {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
   }
   
   .transport-card-icon {
-    font-size: 4.8rem;
-    padding: 3rem;
+    font-size: 3.5rem;
+    padding: 1.5rem;
   }
 }
