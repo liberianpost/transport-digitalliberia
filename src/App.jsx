@@ -7,6 +7,7 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [showVehicleModal, setShowVehicleModal] = useState(false);
   const [showLicenseModal, setShowLicenseModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('signup');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +31,12 @@ function App() {
 
   const handleVehicleClick = () => {
     setShowVehicleModal(true);
+    setActiveTab('signup');
   };
 
   const handleLicenseClick = () => {
     setShowLicenseModal(true);
+    setActiveTab('signup');
   };
 
   const Modal = ({ show, onClose, title, children }) => {
@@ -54,55 +57,93 @@ function App() {
     );
   };
 
-  const AuthModalContent = () => (
+  const AuthModalContent = ({ serviceType }) => (
     <div className="auth-modal-content">
       <div className="auth-tabs">
-        <div className="auth-tab active">Sign Up</div>
-        <div className="auth-tab">Login</div>
+        <div 
+          className={`auth-tab ${activeTab === 'signup' ? 'active' : ''}`}
+          onClick={() => setActiveTab('signup')}
+        >
+          Sign Up
+        </div>
+        <div 
+          className={`auth-tab ${activeTab === 'login' ? 'active' : ''}`}
+          onClick={() => setActiveTab('login')}
+        >
+          Login
+        </div>
       </div>
       
       <div className="auth-forms">
-        <div className="auth-form active">
-          <h3>Create Account</h3>
-          <p>Sign up for vehicle registration services</p>
+        {/* Sign Up Form - Only DSSN */}
+        <div className={`auth-form ${activeTab === 'signup' ? 'active' : ''}`}>
+          <h3>Start Your {serviceType} Application</h3>
+          <p>Enter your DSSN to begin the registration process</p>
           
           <div className="form-group">
-            <input type="text" placeholder="Full Name" />
-          </div>
-          <div className="form-group">
-            <input type="email" placeholder="Email Address" />
-          </div>
-          <div className="form-group">
-            <input type="password" placeholder="Create Password" />
-          </div>
-          <div className="form-group">
-            <input type="password" placeholder="Confirm Password" />
+            <label htmlFor="dssn-signup">Digital Social Security Number (DSSN)</label>
+            <input 
+              type="text" 
+              id="dssn-signup"
+              placeholder="Enter your DSSN" 
+              maxLength="11"
+              pattern="[0-9]{11}"
+              title="DSSN must be 11 digits"
+            />
+            <div className="input-help">
+              Your 11-digit Digital Social Security Number
+            </div>
           </div>
           
           <button className="btn btn-transport" style={{width: '100%'}}>
-            Create Account
+            Verify DSSN & Continue
           </button>
+
+          <div className="auth-info">
+            <p><strong>Why DSSN?</strong></p>
+            <p>Your DSSN verifies your identity and checks if you have the necessary role-based access for {serviceType.toLowerCase()} services.</p>
+            <p>After verification, you'll be guided to create your account password.</p>
+          </div>
         </div>
         
-        <div className="auth-form">
-          <h3>Welcome Back</h3>
-          <p>Login to your account</p>
+        {/* Login Form - DSSN and Password */}
+        <div className={`auth-form ${activeTab === 'login' ? 'active' : ''}`}>
+          <h3>Access Your {serviceType} Account</h3>
+          <p>Login to manage your {serviceType.toLowerCase()} services</p>
           
           <div className="form-group">
-            <input type="email" placeholder="Email Address" />
+            <label htmlFor="dssn-login">Digital Social Security Number (DSSN)</label>
+            <input 
+              type="text" 
+              id="dssn-login"
+              placeholder="Enter your DSSN" 
+              maxLength="11"
+              pattern="[0-9]{11}"
+              title="DSSN must be 11 digits"
+            />
           </div>
+
           <div className="form-group">
-            <input type="password" placeholder="Password" />
+            <label htmlFor="password-login">Password</label>
+            <input 
+              type="password" 
+              id="password-login"
+              placeholder="Enter your password" 
+            />
           </div>
           
           <button className="btn btn-transport" style={{width: '100%'}}>
             Login to Account
           </button>
+
+          <div className="auth-links">
+            <a href="#forgot-password" className="auth-link">Forgot Password?</a>
+          </div>
         </div>
       </div>
       
       <div className="auth-footer">
-        <p>We'll work on the backend integration later</p>
+        <p>Backend integration will verify DSSN role-based access</p>
       </div>
     </div>
   );
@@ -223,7 +264,7 @@ function App() {
                   }}>🚙</div>
                   <div className="transport-feature-content">
                     <h4>Vehicle Registration</h4>
-                    <p>Register and manage vehicle documentation and compliance nationwide</p>
+                    <p>Register and manage vehicle documentation, compliance, and ownership transfers nationwide. Complete vehicle lifecycle management with real-time status tracking.</p>
                   </div>
                 </div>
 
@@ -244,8 +285,8 @@ function App() {
                     boxShadow: '0 8px 25px rgba(245, 158, 11, 0.4)'
                   }}>👨‍✈️</div>
                   <div className="transport-feature-content">
-                    <h4>Drivers License</h4>
-                    <p>Apply for and manage driver licensing and certification services</p>
+                    <h4>Drivers License Services</h4>
+                    <p>Apply for, renew, and manage driver licensing, certification, and endorsements. Complete testing scheduling and license verification services.</p>
                   </div>
                 </div>
 
@@ -262,7 +303,7 @@ function App() {
                   }}>🚚</div>
                   <div className="transport-feature-content">
                     <h4>Fleet Management</h4>
-                    <p>Real-time vehicle tracking and fleet optimization for national transport</p>
+                    <p>Real-time vehicle tracking and fleet optimization for national transport operations and logistics coordination.</p>
                   </div>
                 </div>
 
@@ -278,7 +319,7 @@ function App() {
                   }}>🛣️</div>
                   <div className="transport-feature-content">
                     <h4>Route Planning</h4>
-                    <p>Intelligent route optimization and traffic management systems</p>
+                    <p>Intelligent route optimization and traffic management systems for efficient transportation networks.</p>
                   </div>
                 </div>
               </div>
@@ -547,9 +588,9 @@ function App() {
       <Modal 
         show={showVehicleModal} 
         onClose={() => setShowVehicleModal(false)}
-        title="Vehicle Registration"
+        title="Vehicle Registration Services"
       >
-        <AuthModalContent />
+        <AuthModalContent serviceType="Vehicle Registration" />
       </Modal>
 
       {/* Drivers License Modal */}
@@ -558,7 +599,7 @@ function App() {
         onClose={() => setShowLicenseModal(false)}
         title="Drivers License Services"
       >
-        <AuthModalContent />
+        <AuthModalContent serviceType="Drivers License" />
       </Modal>
     </div>
   );
