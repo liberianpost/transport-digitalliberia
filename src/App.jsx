@@ -1,4 +1,4 @@
-// src/App.jsx - COMPLETE UPDATED TRANSPORT COMPONENT
+// src/App.jsx - COMPLETE FIXED FRONTEND
 
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
@@ -14,11 +14,19 @@ function App() {
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serviceType, setServiceType] = useState('');
+  const [formData, setFormData] = useState({
+    dssn: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: ''
+  });
 
-  // API functions
+  // API functions - IMPROVED ERROR HANDLING
   const authAPI = {
     verifyDSSN: async (dssn, serviceType) => {
       try {
+        console.log('Sending DSSN verification request:', { dssn, serviceType });
         const response = await fetch('/auth/verify-dssn', {
           method: 'POST',
           headers: {
@@ -26,10 +34,20 @@ function App() {
           },
           body: JSON.stringify({ dssn, serviceType }),
         });
-        return await response.json();
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('DSSN verification response:', data);
+        return data;
       } catch (error) {
         console.error('Error verifying DSSN:', error);
-        return { success: false, message: 'Network error' };
+        return { 
+          success: false, 
+          message: error.message || 'Network error. Please check your connection.' 
+        };
       }
     },
 
@@ -42,10 +60,18 @@ function App() {
           },
           body: JSON.stringify({ dssn, password, confirmPassword, email, phoneNumber }),
         });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         return await response.json();
       } catch (error) {
         console.error('Error creating password:', error);
-        return { success: false, message: 'Network error' };
+        return { 
+          success: false, 
+          message: error.message || 'Network error. Please check your connection.' 
+        };
       }
     },
 
@@ -58,10 +84,18 @@ function App() {
           },
           body: JSON.stringify({ dssn, password }),
         });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         return await response.json();
       } catch (error) {
         console.error('Error during login:', error);
-        return { success: false, message: 'Network error' };
+        return { 
+          success: false, 
+          message: error.message || 'Network error. Please check your connection.' 
+        };
       }
     }
   };
@@ -95,6 +129,13 @@ function App() {
     setServiceType('vehicle_registration');
     setShowPasswordForm(false);
     setVerifiedDSSN('');
+    setFormData({
+      dssn: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: ''
+    });
   };
 
   const handleLicenseClick = () => {
@@ -103,20 +144,35 @@ function App() {
     setServiceType('drivers_license');
     setShowPasswordForm(false);
     setVerifiedDSSN('');
+    setFormData({
+      dssn: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: ''
+    });
   };
 
   const handleDSSNVerification = async (dssn) => {
+    // Clean the DSSN input
+    const cleanedDSSN = dssn.replace(/\D/g, ''); // Remove non-digits
+    
+    if (cleanedDSSN.length !== 15) {
+      alert('Please enter a valid 15-digit DSSN');
+      return;
+    }
+
     setLoading(true);
-    const result = await authAPI.verifyDSSN(dssn, serviceType);
+    const result = await authAPI.verifyDSSN(cleanedDSSN, serviceType);
     setLoading(false);
     
     if (result.success) {
       if (result.requiresPasswordSetup) {
         setShowPasswordForm(true);
-        setVerifiedDSSN(dssn);
+        setVerifiedDSSN(cleanedDSSN);
       } else {
         setActiveTab('login');
-        setVerifiedDSSN(dssn);
+        setVerifiedDSSN(cleanedDSSN);
         alert('DSSN verified. Please login with your password.');
       }
     } else {
@@ -139,8 +195,9 @@ function App() {
   };
 
   const handleTransportLogin = async (dssn, password) => {
+    const cleanedDSSN = dssn.replace(/\D/g, ''); // Remove non-digits
     setLoading(true);
-    const result = await authAPI.transportLogin(dssn, password);
+    const result = await authAPI.transportLogin(cleanedDSSN, password);
     setLoading(false);
     
     if (result.success) {
@@ -168,6 +225,22 @@ function App() {
         </div>
       </div>
     );
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleDSSNInput = (value) => {
+    // Only allow numbers and limit to 15 digits
+    const numbersOnly = value.replace(/\D/g, '').slice(0, 15);
+    setFormData(prev => ({
+      ...prev,
+      dssn: numbersOnly
+    }));
   };
 
   const AuthModalContent = ({ serviceType }) => (
@@ -208,12 +281,13 @@ function App() {
                 type="text" 
                 id="dssn-signup"
                 placeholder="Enter your 15-digit DSSN" 
-                maxLength="15"
-                pattern="[0-9]{15}"
-                title="DSSN must be 15 digits"
+                value={formData.dssn}
+                onChange={(e) => handleDSSNInput(e.target.value)}
+                maxLength={15}
+                inputMode="numeric"
               />
               <div className="input-help">
-                Your 15-digit Digital Social Security Number
+                {formData.dssn.length}/15 digits
               </div>
             </div>
             
@@ -221,14 +295,13 @@ function App() {
               className="btn btn-transport" 
               style={{width: '100%'}}
               onClick={() => {
-                const dssnInput = document.getElementById('dssn-signup');
-                if (dssnInput.value.length === 15) {
-                  handleDSSNVerification(dssnInput.value);
+                if (formData.dssn.length === 15) {
+                  handleDSSNVerification(formData.dssn);
                 } else {
                   alert('Please enter a valid 15-digit DSSN');
                 }
               }}
-              disabled={loading}
+              disabled={loading || formData.dssn.length !== 15}
             >
               {loading ? 'Verifying...' : 'Verify DSSN & Continue'}
             </button>
@@ -253,6 +326,8 @@ function App() {
                 type="email" 
                 id="email"
                 placeholder="Enter your email address" 
+                value={formData.email}
+                onChange={(e) => handleInputChange('email', e.target.value)}
                 required
               />
             </div>
@@ -263,6 +338,8 @@ function App() {
                 type="tel" 
                 id="phone"
                 placeholder="Enter your phone number" 
+                value={formData.phone}
+                onChange={(e) => handleInputChange('phone', e.target.value)}
                 required
               />
             </div>
@@ -273,6 +350,8 @@ function App() {
                 type="password" 
                 id="password"
                 placeholder="Create your password (min. 6 characters)" 
+                value={formData.password}
+                onChange={(e) => handleInputChange('password', e.target.value)}
                 minLength="6"
                 required
               />
@@ -284,6 +363,8 @@ function App() {
                 type="password" 
                 id="confirmPassword"
                 placeholder="Confirm your password" 
+                value={formData.confirmPassword}
+                onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
                 minLength="6"
                 required
               />
@@ -293,17 +374,17 @@ function App() {
               className="btn btn-transport" 
               style={{width: '100%'}}
               onClick={() => {
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                
-                if (!email || !phone || !password || !confirmPassword) {
+                if (!formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
                   alert('Please fill all fields');
                   return;
                 }
                 
-                handlePasswordCreation(password, confirmPassword, email, phone);
+                if (formData.password !== formData.confirmPassword) {
+                  alert('Passwords do not match');
+                  return;
+                }
+                
+                handlePasswordCreation(formData.password, formData.confirmPassword, formData.email, formData.phone);
               }}
               disabled={loading}
             >
@@ -334,10 +415,10 @@ function App() {
                 type="text" 
                 id="dssn-login"
                 placeholder="Enter your 15-digit DSSN" 
-                maxLength="15"
-                pattern="[0-9]{15}"
-                title="DSSN must be 15 digits"
-                defaultValue={verifiedDSSN}
+                value={formData.dssn}
+                onChange={(e) => handleDSSNInput(e.target.value)}
+                maxLength={15}
+                inputMode="numeric"
               />
             </div>
 
@@ -347,6 +428,8 @@ function App() {
                 type="password" 
                 id="password-login"
                 placeholder="Enter your password" 
+                value={formData.password}
+                onChange={(e) => handleInputChange('password', e.target.value)}
               />
             </div>
             
@@ -354,15 +437,17 @@ function App() {
               className="btn btn-transport" 
               style={{width: '100%'}}
               onClick={() => {
-                const dssn = document.getElementById('dssn-login').value;
-                const password = document.getElementById('password-login').value;
-                
-                if (!dssn || !password) {
+                if (!formData.dssn || !formData.password) {
                   alert('Please enter both DSSN and password');
                   return;
                 }
                 
-                handleTransportLogin(dssn, password);
+                if (formData.dssn.length !== 15) {
+                  alert('Please enter a valid 15-digit DSSN');
+                  return;
+                }
+                
+                handleTransportLogin(formData.dssn, formData.password);
               }}
               disabled={loading}
             >
@@ -828,6 +913,13 @@ function App() {
           setShowVehicleModal(false);
           setShowPasswordForm(false);
           setVerifiedDSSN('');
+          setFormData({
+            dssn: '',
+            email: '',
+            phone: '',
+            password: '',
+            confirmPassword: ''
+          });
         }}
         title="Vehicle Registration Services"
       >
@@ -841,6 +933,13 @@ function App() {
           setShowLicenseModal(false);
           setShowPasswordForm(false);
           setVerifiedDSSN('');
+          setFormData({
+            dssn: '',
+            email: '',
+            phone: '',
+            password: '',
+            confirmPassword: ''
+          });
         }}
         title="Drivers License Services"
       >
