@@ -1,4 +1,4 @@
-/* src/index.css - UPDATED TRANSPORT SECTION */
+/* src/index.css - FIXED TRANSPORT SECTION */
 
 * {
   margin: 0;
@@ -621,7 +621,7 @@ body::after {
   background-clip: text;
 }
 
-/* Enhanced Cyber Form Styles */
+/* FIXED: Enhanced Cyber Form Styles - Fixed Input Text Color */
 .form-group {
   margin-bottom: 3rem;
 }
@@ -649,7 +649,7 @@ body::after {
   font-size: 1.3rem;
   transition: var(--transition-elastic);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--white);
+  color: var(--text-dark); /* CHANGED: Now uses dark text for visibility */
   font-weight: 600;
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.3),
@@ -659,7 +659,7 @@ body::after {
 }
 
 .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.7); /* CHANGED: Darker placeholder for visibility */
   font-weight: 500;
 }
 
@@ -835,7 +835,7 @@ body::after {
   color: var(--white);
 }
 
-/* Auth Modal Styles */
+/* FIXED: Auth Modal Styles - Fixed Input Colors */
 .auth-modal-content {
   width: 100%;
 }
@@ -905,7 +905,7 @@ body::after {
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--white);
+  color: var(--text-dark); /* CHANGED: Now uses dark text for visibility */
   font-size: 1rem;
   transition: var(--transition-elastic);
   backdrop-filter: blur(20px);
@@ -919,7 +919,37 @@ body::after {
 }
 
 .auth-form .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6); /* CHANGED: Darker placeholder for visibility */
+}
+
+.auth-info {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.auth-links {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-links .auth-link {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-elastic);
+  display: inline-block;
+}
+
+.auth-links .auth-link:hover {
+  color: var(--neon-green);
+  text-decoration: underline;
+  transform: translateY(-2px);
 }
 
 .auth-footer {
