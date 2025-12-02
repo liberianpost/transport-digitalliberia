@@ -615,13 +615,9 @@ body::after {
   font-weight: 400;
   line-height: 1.7;
   text-shadow: 0 1px 15px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(0,255,136,0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* FIXED: Enhanced Cyber Form Styles - Fixed Input Text Color */
+/* FIXED: Enhanced Cyber Form Styles - REMOVED gradient text from input */
 .form-group {
   margin-bottom: 3rem;
 }
@@ -649,17 +645,18 @@ body::after {
   font-size: 1.3rem;
   transition: var(--transition-elastic);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--text-dark); /* CHANGED: Now uses dark text for visibility */
+  color: var(--white); /* KEEP white for visibility */
   font-weight: 600;
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(255,255,255,0.1);
   backdrop-filter: blur(20px);
   font-family: 'Inter', sans-serif;
+  /* REMOVED: -webkit-background-clip, -webkit-text-fill-color, background-clip */
 }
 
 .form-group input::placeholder {
-  color: rgba(0, 0, 0, 0.7); /* CHANGED: Darker placeholder for visibility */
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
 
@@ -673,6 +670,9 @@ body::after {
     0 0 20px rgba(0, 255, 136, 0.2);
   transform: translateY(-8px) scale(1.02);
   animation: inputFocus 0.6s ease-out;
+  /* Ensure text is visible on focus */
+  color: var(--white) !important;
+  -webkit-text-fill-color: var(--white) !important;
 }
 
 .input-help {
@@ -681,10 +681,6 @@ body::after {
   margin-top: 1rem;
   font-weight: 500;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(0,217,255,0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .login-submit-btn {
@@ -905,10 +901,11 @@ body::after {
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--text-dark); /* CHANGED: Now uses dark text for visibility */
+  color: var(--white); /* KEEP white for visibility */
   font-size: 1rem;
   transition: var(--transition-elastic);
   backdrop-filter: blur(20px);
+  /* REMOVED: gradient text effects */
 }
 
 .auth-form .form-group input:focus {
@@ -916,10 +913,13 @@ body::after {
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
   transform: translateY(-2px);
+  /* Ensure text is visible on focus */
+  color: var(--white) !important;
+  -webkit-text-fill-color: var(--white) !important;
 }
 
 .auth-form .form-group input::placeholder {
-  color: rgba(0, 0, 0, 0.6); /* CHANGED: Darker placeholder for visibility */
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .auth-info {
