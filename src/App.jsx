@@ -243,229 +243,253 @@ function App() {
     }));
   };
 
-  const AuthModalContent = ({ serviceType }) => (
-    <div className="auth-modal-content">
-      <div className="auth-tabs">
-        <div 
-          className={`auth-tab ${activeTab === 'signup' ? 'active' : ''}`}
-          onClick={() => {
-            if (!showPasswordForm) {
-              setActiveTab('signup');
-              setShowPasswordForm(false);
-            }
-          }}
-        >
-          Sign Up
-        </div>
-        <div 
-          className={`auth-tab ${activeTab === 'login' ? 'active' : ''}`}
-          onClick={() => {
-            setActiveTab('login');
-            setShowPasswordForm(false);
-          }}
-        >
-          Login
-        </div>
-      </div>
+  const AuthModalContent = ({ serviceType }) => {
+    // Local handler functions for input changes
+    const handleLocalInputChange = (field, value) => {
+      setFormData(prev => ({
+        ...prev,
+        [field]: value
+      }));
+    };
+
+    const handleLocalDSSNInput = (value) => {
+      const numbersOnly = value.replace(/\D/g, '').slice(0, 15);
+      setFormData(prev => ({
+        ...prev,
+        dssn: numbersOnly
+      }));
+    };
+
+    const handleLocalDSSNVerification = async () => {
+      if (formData.dssn.length === 15) {
+        await handleDSSNVerification(formData.dssn);
+      } else {
+        alert('Please enter a valid 15-digit DSSN');
+      }
+    };
+
+    const handleLocalPasswordCreation = async () => {
+      if (!formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
+        alert('Please fill all fields');
+        return;
+      }
       
-      <div className="auth-forms">
-        {/* DSSN Verification Form */}
-        {!showPasswordForm && activeTab === 'signup' && (
-          <div className="auth-form active">
-            <h3>Start Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Application</h3>
-            <p>Enter your DSSN to begin the registration process</p>
-            
-            <div className="form-group">
-              <label htmlFor="dssn-signup">Digital Social Security Number (DSSN)</label>
-              <input 
-                type="text" 
-                id="dssn-signup"
-                placeholder="Enter your 15-digit DSSN" 
-                value={formData.dssn}
-                onChange={(e) => handleDSSNInput(e.target.value)}
-                maxLength={15}
-                inputMode="numeric"
-              />
-              <div className="input-help">
-                {formData.dssn.length}/15 digits
+      if (formData.password !== formData.confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+      
+      await handlePasswordCreation(formData.password, formData.confirmPassword, formData.email, formData.phone);
+    };
+
+    const handleLocalTransportLogin = async () => {
+      if (!formData.dssn || !formData.password) {
+        alert('Please enter both DSSN and password');
+        return;
+      }
+      
+      if (formData.dssn.length !== 15) {
+        alert('Please enter a valid 15-digit DSSN');
+        return;
+      }
+      
+      await handleTransportLogin(formData.dssn, formData.password);
+    };
+
+    return (
+      <div className="auth-modal-content">
+        <div className="auth-tabs">
+          <div 
+            className={`auth-tab ${activeTab === 'signup' ? 'active' : ''}`}
+            onClick={() => {
+              if (!showPasswordForm) {
+                setActiveTab('signup');
+                setShowPasswordForm(false);
+              }
+            }}
+          >
+            Sign Up
+          </div>
+          <div 
+            className={`auth-tab ${activeTab === 'login' ? 'active' : ''}`}
+            onClick={() => {
+              setActiveTab('login');
+              setShowPasswordForm(false);
+            }}
+          >
+            Login
+          </div>
+        </div>
+        
+        <div className="auth-forms">
+          {/* DSSN Verification Form */}
+          {!showPasswordForm && activeTab === 'signup' && (
+            <div className="auth-form active">
+              <h3>Start Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Application</h3>
+              <p>Enter your DSSN to begin the registration process</p>
+              
+              <div className="form-group">
+                <label htmlFor="dssn-signup">Digital Social Security Number (DSSN)</label>
+                <input 
+                  type="text" 
+                  id="dssn-signup"
+                  placeholder="Enter your 15-digit DSSN" 
+                  value={formData.dssn}
+                  onChange={(e) => handleLocalDSSNInput(e.target.value)}
+                  maxLength={15}
+                  inputMode="numeric"
+                />
+                <div className="input-help">
+                  {formData.dssn.length}/15 digits
+                </div>
+              </div>
+              
+              <button 
+                className="btn btn-transport" 
+                style={{width: '100%'}}
+                onClick={handleLocalDSSNVerification}
+                disabled={loading || formData.dssn.length !== 15}
+              >
+                {loading ? 'Verifying...' : 'Verify DSSN & Continue'}
+              </button>
+
+              <div className="auth-info">
+                <p><strong>Why DSSN?</strong></p>
+                <p>Your DSSN verifies your identity and checks if you have the necessary role-based access for {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services.</p>
+                <p>After verification, you'll be guided to create your account password.</p>
               </div>
             </div>
-            
-            <button 
-              className="btn btn-transport" 
-              style={{width: '100%'}}
-              onClick={() => {
-                if (formData.dssn.length === 15) {
-                  handleDSSNVerification(formData.dssn);
-                } else {
-                  alert('Please enter a valid 15-digit DSSN');
-                }
-              }}
-              disabled={loading || formData.dssn.length !== 15}
-            >
-              {loading ? 'Verifying...' : 'Verify DSSN & Continue'}
-            </button>
+          )}
 
-            <div className="auth-info">
-              <p><strong>Why DSSN?</strong></p>
-              <p>Your DSSN verifies your identity and checks if you have the necessary role-based access for {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services.</p>
-              <p>After verification, you'll be guided to create your account password.</p>
-            </div>
-          </div>
-        )}
+          {/* Password Creation Form */}
+          {showPasswordForm && (
+            <div className="auth-form active">
+              <h3>Create Your Account</h3>
+              <p>Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
+              
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email"
+                  placeholder="Enter your email address" 
+                  value={formData.email}
+                  onChange={(e) => handleLocalInputChange('email', e.target.value)}
+                  required
+                />
+              </div>
 
-        {/* Password Creation Form */}
-        {showPasswordForm && (
-          <div className="auth-form active">
-            <h3>Create Your Account</h3>
-            <p>Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
-            
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input 
-                type="email" 
-                id="email"
-                placeholder="Enter your email address" 
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                required
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input 
+                  type="tel" 
+                  id="phone"
+                  placeholder="Enter your phone number" 
+                  value={formData.phone}
+                  onChange={(e) => handleLocalInputChange('phone', e.target.value)}
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone"
-                placeholder="Enter your phone number" 
-                value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-                required
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input 
+                  type="password" 
+                  id="password"
+                  placeholder="Create your password (min. 6 characters)" 
+                  value={formData.password}
+                  onChange={(e) => handleLocalInputChange('password', e.target.value)}
+                  minLength="6"
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input 
-                type="password" 
-                id="password"
-                placeholder="Create your password (min. 6 characters)" 
-                value={formData.password}
-                onChange={(e) => handleInputChange('password', e.target.value)}
-                minLength="6"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input 
-                type="password" 
-                id="confirmPassword"
-                placeholder="Confirm your password" 
-                value={formData.confirmPassword}
-                onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                minLength="6"
-                required
-              />
-            </div>
-            
-            <button 
-              className="btn btn-transport" 
-              style={{width: '100%'}}
-              onClick={() => {
-                if (!formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
-                  alert('Please fill all fields');
-                  return;
-                }
-                
-                if (formData.password !== formData.confirmPassword) {
-                  alert('Passwords do not match');
-                  return;
-                }
-                
-                handlePasswordCreation(formData.password, formData.confirmPassword, formData.email, formData.phone);
-              }}
-              disabled={loading}
-            >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </button>
-
-            <div className="auth-links">
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input 
+                  type="password" 
+                  id="confirmPassword"
+                  placeholder="Confirm your password" 
+                  value={formData.confirmPassword}
+                  onChange={(e) => handleLocalInputChange('confirmPassword', e.target.value)}
+                  minLength="6"
+                  required
+                />
+              </div>
+              
               <button 
-                className="auth-link" 
-                onClick={() => setShowPasswordForm(false)}
-                style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer' }}
+                className="btn btn-transport" 
+                style={{width: '100%'}}
+                onClick={handleLocalPasswordCreation}
+                disabled={loading}
               >
-                ← Back to DSSN Verification
+                {loading ? 'Creating Account...' : 'Create Account'}
               </button>
+
+              <div className="auth-links">
+                <button 
+                  className="auth-link" 
+                  onClick={() => setShowPasswordForm(false)}
+                  style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer' }}
+                >
+                  ← Back to DSSN Verification
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+          
+          {/* Login Form - DSSN and Password */}
+          {activeTab === 'login' && (
+            <div className="auth-form active">
+              <h3>Access Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Account</h3>
+              <p>Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
+              
+              <div className="form-group">
+                <label htmlFor="dssn-login">Digital Social Security Number (DSSN)</label>
+                <input 
+                  type="text" 
+                  id="dssn-login"
+                  placeholder="Enter your 15-digit DSSN" 
+                  value={formData.dssn}
+                  onChange={(e) => handleLocalDSSNInput(e.target.value)}
+                  maxLength={15}
+                  inputMode="numeric"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password-login">Password</label>
+                <input 
+                  type="password" 
+                  id="password-login"
+                  placeholder="Enter your password" 
+                  value={formData.password}
+                  onChange={(e) => handleLocalInputChange('password', e.target.value)}
+                />
+              </div>
+              
+              <button 
+                className="btn btn-transport" 
+                style={{width: '100%'}}
+                onClick={handleLocalTransportLogin}
+                disabled={loading}
+              >
+                {loading ? 'Logging in...' : 'Login to Account'}
+              </button>
+
+              <div className="auth-links">
+                <a href="#forgot-password" className="auth-link">Forgot Password?</a>
+              </div>
+            </div>
+          )}
+        </div>
         
-        {/* Login Form - DSSN and Password */}
-        {activeTab === 'login' && (
-          <div className="auth-form active">
-            <h3>Access Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Account</h3>
-            <p>Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
-            
-            <div className="form-group">
-              <label htmlFor="dssn-login">Digital Social Security Number (DSSN)</label>
-              <input 
-                type="text" 
-                id="dssn-login"
-                placeholder="Enter your 15-digit DSSN" 
-                value={formData.dssn}
-                onChange={(e) => handleDSSNInput(e.target.value)}
-                maxLength={15}
-                inputMode="numeric"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password-login">Password</label>
-              <input 
-                type="password" 
-                id="password-login"
-                placeholder="Enter your password" 
-                value={formData.password}
-                onChange={(e) => handleInputChange('password', e.target.value)}
-              />
-            </div>
-            
-            <button 
-              className="btn btn-transport" 
-              style={{width: '100%'}}
-              onClick={() => {
-                if (!formData.dssn || !formData.password) {
-                  alert('Please enter both DSSN and password');
-                  return;
-                }
-                
-                if (formData.dssn.length !== 15) {
-                  alert('Please enter a valid 15-digit DSSN');
-                  return;
-                }
-                
-                handleTransportLogin(formData.dssn, formData.password);
-              }}
-              disabled={loading}
-            >
-              {loading ? 'Logging in...' : 'Login to Account'}
-            </button>
-
-            <div className="auth-links">
-              <a href="#forgot-password" className="auth-link">Forgot Password?</a>
-            </div>
-          </div>
-        )}
+        <div className="auth-footer">
+          <p>Backend integration will verify DSSN role-based access</p>
+        </div>
       </div>
-      
-      <div className="auth-footer">
-        <p>Backend integration will verify DSSN role-based access</p>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="app">
