@@ -1,4 +1,4 @@
-// src/App.jsx - COMPLETE FIXED FRONTEND
+// src/App.jsx - COMPLETE FIXED FRONTEND WITH VISIBLE TEXT
 
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
@@ -326,7 +326,7 @@ function App() {
           {!showPasswordForm && activeTab === 'signup' && (
             <div className="auth-form active">
               <h3>Start Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Application</h3>
-              <p>Enter your DSSN to begin the registration process</p>
+              <p className="form-subtitle">Enter your DSSN to begin the registration process</p>
               
               <div className="form-group">
                 <label htmlFor="dssn-signup">Digital Social Security Number (DSSN)</label>
@@ -338,6 +338,7 @@ function App() {
                   onChange={(e) => handleLocalDSSNInput(e.target.value)}
                   maxLength={15}
                   inputMode="numeric"
+                  className="modal-input"
                 />
                 <div className="input-help">
                   {formData.dssn.length}/15 digits
@@ -365,7 +366,7 @@ function App() {
           {showPasswordForm && (
             <div className="auth-form active">
               <h3>Create Your Account</h3>
-              <p>Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
+              <p className="form-subtitle">Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
               
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
@@ -376,6 +377,7 @@ function App() {
                   value={formData.email}
                   onChange={(e) => handleLocalInputChange('email', e.target.value)}
                   required
+                  className="modal-input"
                 />
               </div>
 
@@ -388,6 +390,7 @@ function App() {
                   value={formData.phone}
                   onChange={(e) => handleLocalInputChange('phone', e.target.value)}
                   required
+                  className="modal-input"
                 />
               </div>
 
@@ -401,6 +404,7 @@ function App() {
                   onChange={(e) => handleLocalInputChange('password', e.target.value)}
                   minLength="6"
                   required
+                  className="modal-input"
                 />
               </div>
 
@@ -414,6 +418,7 @@ function App() {
                   onChange={(e) => handleLocalInputChange('confirmPassword', e.target.value)}
                   minLength="6"
                   required
+                  className="modal-input"
                 />
               </div>
               
@@ -430,7 +435,7 @@ function App() {
                 <button 
                   className="auth-link" 
                   onClick={() => setShowPasswordForm(false)}
-                  style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer' }}
+                  style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer', fontSize: '0.95rem' }}
                 >
                   ← Back to DSSN Verification
                 </button>
@@ -442,7 +447,7 @@ function App() {
           {activeTab === 'login' && (
             <div className="auth-form active">
               <h3>Access Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Account</h3>
-              <p>Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
+              <p className="form-subtitle">Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
               
               <div className="form-group">
                 <label htmlFor="dssn-login">Digital Social Security Number (DSSN)</label>
@@ -454,6 +459,7 @@ function App() {
                   onChange={(e) => handleLocalDSSNInput(e.target.value)}
                   maxLength={15}
                   inputMode="numeric"
+                  className="modal-input"
                 />
               </div>
 
@@ -465,6 +471,7 @@ function App() {
                   placeholder="Enter your password" 
                   value={formData.password}
                   onChange={(e) => handleLocalInputChange('password', e.target.value)}
+                  className="modal-input"
                 />
               </div>
               
