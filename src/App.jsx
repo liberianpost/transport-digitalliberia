@@ -1,4 +1,4 @@
-// src/App.jsx - COMPLETE FIXED FRONTEND WITH VISIBLE TEXT
+// src/App.jsx - COMPLETE FIXED VERSION WITH VISIBLE TEXT
 
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
@@ -326,7 +326,7 @@ function App() {
           {!showPasswordForm && activeTab === 'signup' && (
             <div className="auth-form active">
               <h3>Start Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Application</h3>
-              <p className="form-subtitle">Enter your DSSN to begin the registration process</p>
+              <p className="form-description">Enter your DSSN to begin the registration process</p>
               
               <div className="form-group">
                 <label htmlFor="dssn-signup">Digital Social Security Number (DSSN)</label>
@@ -338,7 +338,7 @@ function App() {
                   onChange={(e) => handleLocalDSSNInput(e.target.value)}
                   maxLength={15}
                   inputMode="numeric"
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
                 <div className="input-help">
                   {formData.dssn.length}/15 digits
@@ -366,7 +366,7 @@ function App() {
           {showPasswordForm && (
             <div className="auth-form active">
               <h3>Create Your Account</h3>
-              <p className="form-subtitle">Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
+              <p className="form-description">Complete your registration for {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} services</p>
               
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
@@ -377,7 +377,7 @@ function App() {
                   value={formData.email}
                   onChange={(e) => handleLocalInputChange('email', e.target.value)}
                   required
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
 
@@ -390,7 +390,7 @@ function App() {
                   value={formData.phone}
                   onChange={(e) => handleLocalInputChange('phone', e.target.value)}
                   required
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
 
@@ -404,7 +404,7 @@ function App() {
                   onChange={(e) => handleLocalInputChange('password', e.target.value)}
                   minLength="6"
                   required
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
 
@@ -418,7 +418,7 @@ function App() {
                   onChange={(e) => handleLocalInputChange('confirmPassword', e.target.value)}
                   minLength="6"
                   required
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
               
@@ -447,7 +447,7 @@ function App() {
           {activeTab === 'login' && (
             <div className="auth-form active">
               <h3>Access Your {serviceType === 'vehicle_registration' ? 'Vehicle Registration' : 'Drivers License'} Account</h3>
-              <p className="form-subtitle">Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
+              <p className="form-description">Login to manage your {serviceType === 'vehicle_registration' ? 'vehicle registration' : 'drivers license'} services</p>
               
               <div className="form-group">
                 <label htmlFor="dssn-login">Digital Social Security Number (DSSN)</label>
@@ -459,7 +459,7 @@ function App() {
                   onChange={(e) => handleLocalDSSNInput(e.target.value)}
                   maxLength={15}
                   inputMode="numeric"
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
 
@@ -471,7 +471,7 @@ function App() {
                   placeholder="Enter your password" 
                   value={formData.password}
                   onChange={(e) => handleLocalInputChange('password', e.target.value)}
-                  className="modal-input"
+                  style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 />
               </div>
               
@@ -485,7 +485,13 @@ function App() {
               </button>
 
               <div className="auth-links">
-                <a href="#forgot-password" className="auth-link">Forgot Password?</a>
+                <button 
+                  className="auth-link" 
+                  onClick={() => alert('Password reset functionality coming soon')}
+                  style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer', fontSize: '0.95rem' }}
+                >
+                  Forgot Password?
+                </button>
               </div>
             </div>
           )}
@@ -527,7 +533,7 @@ function App() {
                 🇱🇷
               </div>
               <span style={{ 
-                color: 'var(--white)', 
+                color: '#ffffff', 
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 textShadow: '0 1px 2px rgba(0,0,0,0.3)'
@@ -539,7 +545,7 @@ function App() {
             {user ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                 <span style={{ 
-                  color: 'var(--white)', 
+                  color: '#ffffff', 
                   fontWeight: '600',
                   fontSize: '0.95rem'
                 }}>
@@ -590,7 +596,7 @@ function App() {
                   Management System
                 </span>
               </h1>
-              <p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Advanced transportation management platform for Liberian infrastructure, 
                 providing real-time logistics and coordinated mobility solutions.
               </p>
@@ -615,7 +621,7 @@ function App() {
                   }}>🚙</div>
                   <div className="transport-feature-content">
                     <h4>Vehicle Registration</h4>
-                    <p>Complete vehicle lifecycle management including registration, documentation, compliance tracking, and digital certification services.</p>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Complete vehicle lifecycle management including registration, documentation, compliance tracking, and digital certification services.</p>
                   </div>
                 </div>
 
@@ -637,7 +643,7 @@ function App() {
                   }}>👨‍✈️</div>
                   <div className="transport-feature-content">
                     <h4>Drivers License Services</h4>
-                    <p>Comprehensive driver management including license applications, renewals, certifications, and digital license management.</p>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Comprehensive driver management including license applications, renewals, certifications, and digital license management.</p>
                   </div>
                 </div>
 
@@ -654,7 +660,7 @@ function App() {
                   }}>🚚</div>
                   <div className="transport-feature-content">
                     <h4>Fleet Management</h4>
-                    <p>Advanced fleet tracking and optimization with real-time monitoring, maintenance scheduling, and comprehensive analytics.</p>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Advanced fleet tracking and optimization with real-time monitoring, maintenance scheduling, and comprehensive analytics.</p>
                   </div>
                 </div>
 
@@ -671,7 +677,7 @@ function App() {
                   }}>🛣️</div>
                   <div className="transport-feature-content">
                     <h4>Route Planning & Optimization</h4>
-                    <p>Intelligent route planning with traffic analysis, congestion management, and optimization algorithms for efficient transportation.</p>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Intelligent route planning with traffic analysis, congestion management, and optimization algorithms for efficient transportation.</p>
                   </div>
                 </div>
               </div>
@@ -745,7 +751,7 @@ function App() {
                   National Mobility First
                 </h3>
                 <p style={{ 
-                  color: 'var(--text-light)', 
+                  color: 'rgba(255, 255, 255, 0.9)', 
                   lineHeight: '1.6',
                   position: 'relative',
                   zIndex: 1
@@ -825,7 +831,7 @@ function App() {
                 🎉
               </div>
               <h1 style={{ 
-                color: 'var(--text-dark)', 
+                color: '#ffffff', 
                 marginBottom: '1rem',
                 fontSize: '2.5rem',
                 fontWeight: '800',
@@ -835,7 +841,7 @@ function App() {
                 Welcome to Transport Portal
               </h1>
               <p style={{ 
-                color: 'var(--text-light)', 
+                color: 'rgba(255, 255, 255, 0.9)', 
                 fontSize: '1.2rem',
                 marginBottom: '2rem',
                 position: 'relative',
@@ -878,8 +884,8 @@ function App() {
                     color: '#22c55e',
                     background: 'linear-gradient(135deg, #22c55e30, #22c55e10)'
                   }}>🚚</div>
-                  <h3 className="transport-card-title">Fleet Management</h3>
-                  <p className="transport-card-description">
+                  <h3 className="transport-card-title" style={{ color: '#1e293b' }}>Fleet Management</h3>
+                  <p className="transport-card-description" style={{ color: '#64748b' }}>
                     Real-time national fleet tracking and vehicle management systems
                   </p>
                   <button className="btn btn-transport">
@@ -897,8 +903,8 @@ function App() {
                     color: '#3b82f6',
                     background: 'linear-gradient(135deg, #3b82f630, #3b82f610)'
                   }}>🛣️</div>
-                  <h3 className="transport-card-title">Route Planning</h3>
-                  <p className="transport-card-description">
+                  <h3 className="transport-card-title" style={{ color: '#1e293b' }}>Route Planning</h3>
+                  <p className="transport-card-description" style={{ color: '#64748b' }}>
                     Optimize and manage transport routes across Liberia
                   </p>
                   <button className="btn btn-logistics">
@@ -916,8 +922,8 @@ function App() {
                     color: '#f59e0b',
                     background: 'linear-gradient(135deg, #f59e0b30, #f59e0b10)'
                   }}>📦</div>
-                  <h3 className="transport-card-title">Logistics</h3>
-                  <p className="transport-card-description">
+                  <h3 className="transport-card-title" style={{ color: '#1e293b' }}>Logistics</h3>
+                  <p className="transport-card-description" style={{ color: '#64748b' }}>
                     Coordinate cargo and passenger logistics nationwide
                   </p>
                   <button className="btn btn-transport">
