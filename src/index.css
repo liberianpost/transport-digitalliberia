@@ -1,4 +1,4 @@
-/* src/index.css - FIXED WITH VISIBLE TEXT */
+/* src/index.css - COMPLETE FIX WITH VISIBLE TEXT */
 
 * {
   margin: 0;
@@ -43,14 +43,14 @@
   --alert-amber: #ffcc00;
   --cyber-teal: #00ffcc;
   
-  /* Text Colors - ENHANCED FOR BETTER VISIBILITY */
-  --text-dark: #0f172a;
+  /* Text Colors - SIMPLIFIED FOR BETTER VISIBILITY */
+  --text-dark: #1e293b;
   --text-light: #64748b;
   --white: #ffffff;
   --black: #000000;
-  --text-glow: rgba(255, 255, 255, 0.95);
-  --modal-text-dark: #1e293b; /* NEW: For dark text in modals */
-  --modal-text-light: #475569; /* NEW: For lighter text in modals */
+  --input-text: #ffffff; /* Explicit color for inputs */
+  --input-bg: rgba(255, 255, 255, 0.15); /* Explicit background for inputs */
+  --placeholder-color: rgba(255, 255, 255, 0.6); /* Placeholder color */
   
   /* Enhanced Card Styles */
   --card-bg: rgba(255, 255, 255, 0.15);
@@ -255,10 +255,6 @@ body::after {
   font-weight: 400;
   line-height: 1.7;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(0,255,136,0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* UPDATED: Transport Features Grid - Matching Attendance System Size */
@@ -312,10 +308,6 @@ body::after {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ffffff, var(--neon-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .transport-feature-content p {
@@ -632,13 +624,10 @@ body::after {
   font-size: 1.3rem;
   letter-spacing: 0.8px;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, #ffffff, var(--neon-cyan), var(--neon-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   font-family: 'Orbitron', sans-serif;
 }
 
+/* CRITICAL FIX: Form input styling - NO gradient text effects */
 .form-group input {
   width: 100%;
   padding: 1.8rem 2.5rem;
@@ -646,33 +635,33 @@ body::after {
   border-radius: var(--border-radius);
   font-size: 1.3rem;
   transition: var(--transition-elastic);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--white) !important; /* FIX: Force white text */
+  background: var(--input-bg);
+  color: var(--input-text) !important; /* Force white text */
   font-weight: 600;
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(255,255,255,0.1);
   backdrop-filter: blur(20px);
   font-family: 'Inter', sans-serif;
-  /* REMOVED problematic gradient text styles */
+  /* REMOVED: -webkit-background-clip, -webkit-text-fill-color, background-clip */
 }
 
 .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--placeholder-color);
   font-weight: 500;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--neon-green);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 
     0 0 0 4px rgba(0, 255, 136, 0.3),
     0 20px 40px rgba(0, 0, 0, 0.4),
     0 0 20px rgba(0, 255, 136, 0.2);
   transform: translateY(-8px) scale(1.02);
   animation: inputFocus 0.6s ease-out;
-  color: var(--white) !important; /* Ensure white text on focus */
+  color: var(--input-text) !important; /* Ensure white text on focus */
 }
 
 .input-help {
@@ -887,7 +876,7 @@ body::after {
   margin-bottom: 0.75rem;
 }
 
-.form-subtitle {
+.form-description {
   color: rgba(255, 255, 255, 0.9) !important;
   font-size: 1rem !important;
   margin-bottom: 1.5rem !important;
@@ -910,45 +899,35 @@ body::after {
   margin-bottom: 1.5rem;
 }
 
-/* FIXED: Modal Input Styles - Better visibility */
-.modal-input {
-  width: 100%;
-  padding: 1.2rem 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--border-radius);
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: var(--white) !important;
+/* CRITICAL FIX: Modal Input Styles - Simple, visible styling */
+.auth-form .form-group label {
+  color: var(--white);
   font-size: 1rem;
-  transition: var(--transition-elastic);
-  backdrop-filter: blur(20px);
-  font-weight: 500;
-}
-
-.modal-input::placeholder {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-weight: 400;
-}
-
-.modal-input:focus {
-  border-color: var(--neon-green) !important;
-  background: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2) !important;
-  transform: translateY(-2px) !important;
-  color: var(--white) !important;
-  outline: none !important;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .auth-form .form-group input {
   width: 100%;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--border-radius);
   background: rgba(255, 255, 255, 0.15) !important;
-  color: var(--white) !important;
+  color: #ffffff !important; /* Explicit white text */
   font-size: 1rem;
   transition: var(--transition-elastic);
   backdrop-filter: blur(20px);
   font-weight: 500;
+  /* NO gradient text effects */
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
+}
+
+.auth-form .form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400;
 }
 
 .auth-form .form-group input:focus {
@@ -956,13 +935,8 @@ body::after {
   background: rgba(255, 255, 255, 0.2) !important;
   box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2) !important;
   transform: translateY(-2px) !important;
-  color: var(--white) !important;
+  color: #ffffff !important; /* Keep white text on focus */
   outline: none !important;
-}
-
-.auth-form .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-weight: 400;
 }
 
 .auth-info {
